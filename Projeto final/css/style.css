@@ -1,0 +1,216 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E PALETA DE CORES (CYBERPUNK)
+   ========================================================================== */
+:root {
+    --bg-principal: #0a0b10;     /* Fundo ultra escuro */
+    --bg-card: #12141d;          /* Fundo dos blocos de conteúdo */
+    --neon-cyan: #00f3ff;        /* Ciano Cyberpunk */
+    --neon-magenta: #ff0055;     /* Magenta / Rosa Choque */
+    --texto-principal: #cdd6f4;  /* Texto claro para leitura */
+    --texto-mutado: #7f849c;     /* Texto secundário cinza */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px; /* Efeito sutil de grade/grid no fundo */
+}
+
+/* ==========================================================================
+   HEADER E NAVEGAÇÃO
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: rgba(10, 11, 16, 0.95);
+    border-bottom: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+header h1 span {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--texto-principal);
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+}
+
+nav a:hover, nav a.active {
+    color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+    background-color: rgba(0, 243, 255, 0.05);
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL E SEÇÕES
+   ========================================================================== */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+h2.section-title {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    color: #fff;
+    border-left: 4px solid var(--neon-magenta);
+    padding-left: 15px;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Bloco de Boas-vindas Superior */
+.coluna-unica {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border: 1px solid #222533;
+    border-right: 4px solid var(--neon-cyan);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.coluna-unica h2 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+    cursor: pointer;
+}
+
+/* Grid de duas colunas */
+.duas-colunas {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* Garante responsividade em telas menores */
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   CARDS DE CONTEÚDO (EFEITOS NEON)
+   ========================================================================== */
+.cyber-card {
+    background-color: var(--bg-card);
+    padding: 30px;
+    flex: 1;
+    min-width: 280px;
+    border: 1px solid #222533;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    cursor:pointer;
+}
+
+.cyber-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Comportamento específico do card Ciano (Front-end / APIs) */
+.cyber-card.cyan {
+    border-top: 3px solid var(--neon-cyan);
+}
+.cyber-card.cyan h3 {
+    color: var(--neon-cyan);
+}
+.cyber-card.cyan:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.25);
+    transform: translateY(-5px);
+}
+
+/* Comportamento específico do card Magenta (Back-end / Padrões) */
+.cyber-card.magenta {
+    border-top: 3px solid var(--neon-magenta);
+}
+.cyber-card.magenta h3 {
+    color: var(--neon-magenta);
+}
+.cyber-card.magenta:hover {
+    border-color: var(--neon-magenta);
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.25);
+    transform: translateY(-5px);
+}
+
+/* Estilo das palavras destacadas dentro do texto */
+.txt-cyan {
+    color: var(--neon-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(0, 243, 255, 0.5);
+}
+
+.txt-magenta {
+    color: var(--neon-magenta);
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(255, 0, 85, 0.5);
+}
+
+/* ==========================================================================
+   RODAPÉ (FOOTER)
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 60px;
+    background-color: #05060a;
+    border-top: 1px solid #1a1d29;
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
