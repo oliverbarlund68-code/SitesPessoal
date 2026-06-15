@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Alinhamento superior e horizontal */
+.menu-container {
+    background-color: black;
+    display: flex;            /* Coloca os itens lado a lado */
+    justify-content: center;  /* Centraliza no meio da tela */
+    width: 100%;              /* Ocupa a largura toda */
+    padding: 20px 0;
+}
+
+/* Estilo comum para todas as boxes (economiza seu código) */
+[class^="box"] {
+    width: 150px;
+    height: 140px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-top: 100px; /* Empurra o texto para baixo da imagem */
+    background-repeat: no-repeat;
+    background-position: center 20px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-bottom: 4px solid transparent; /* Evita que o menu pule no hover */
+    cursor: pointer;
+}
+
+/* --- Imagens e Cores individuais no Hover --- */
+
+.box { background-image: url(../imagens/face.png); }
+.box:hover {
+    background-image: url(../imagens/faceBlack.png);
+    color: #1877F2;
+    border-bottom: 4px solid #1877F2;
+}
+
+.box2 { background-image: url(../imagens/insta.png); }
+.box2:hover {
+    background-image: url(../imagens/instaBlack.png);
+    color: #E1306C;
+    border-bottom: 4px solid #E1306C;
+}
+
+.box3 { background-image: url(../imagens/maps.png); }
+.box3:hover {
+    background-image: url(../imagens/mapsBlack.png);
+    color: #34A853;
+    border-bottom: 4px solid #34A853;
+}
+
+.box4 { background-image: url(../imagens/twitter.png); }
+.box4:hover {
+    background-image: url(../imagens/twitterBlack.png);
+    color: #1DA1F2;
+    border-bottom: 4px solid #1DA1F2;
+}
+
+.box5 { background-image: url(../imagens/youtube.png); }
+.box5:hover {
+    background-image: url(../imagens/youtubeBlack.png);
+    color: #FF0000;
+    border-bottom: 4px solid #FF0000;
+}
+p {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
