@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box {
+    width: 1000px;
+    height: 300px;
+    margin: 20px auto;
+    color: black;
+    padding:20px;
+    border: solid 1px black;
+    border-color: black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    column-count:  2px;
+    margin: auto;
+}
+.box:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 5px 5px 5px gray;
+    cursor: url('images/cursor.png'), auto;
+}

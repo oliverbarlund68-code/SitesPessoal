@@ -1,0 +1,38 @@
+.box {
+        padding: 10px;
+        width: 100%;
+        border: 5px solid black;
+        font-family: sans-serif arial verdana;
+        text-align: center;
+        text-decoration: relative;
+        border-radius: 20px;
+        border-color: darkblue;
+        height: 200px;
+        background-color:rgba(34, 226, 226, 0.6);
+        border-style: solid;
+        position: absolute;
+        top: 40px;
+        left: 30px;
+        bottom: 10px;
+        right: 10px;
+        
+}
+body {
+        p {
+                font-size: 20px;
+                text-align: justify;
+                padding: 20px;
+                font-family: sans-serif arial verdana;
+                margin-top: 300px;
+        }
+        img {
+                width: 100px;
+                height: 100px;
+                border-radius: 20px;
+                margin-left: 1130px;
+                border: 5px solid black;
+                border-color: darkblue;
+                position: absolute;
+                background-color: rgba(34, 226, 226, 0.4);
+        }
+}
