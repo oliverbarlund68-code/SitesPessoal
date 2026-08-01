@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 4</title>
+</head>
+<body>
+    <script>
+        var nota1 = parseFloat(prompt("Digite a nota do 1º bimestre:"));
+        var nota2 = parseFloat(prompt("Digite a nota do 2º bimestre:"));
+        var soma = nota1 + nota2;
+
+        if (soma >= 60.0) {
+            alert("Aprovado! Sua nota total foi: " + soma);
+        } else {
+            var faltantes = 60.0 - soma;
+            alert("Reprovado. Sua nota total foi " + soma + ". Faltaram " + faltantes + " pontos para a aprovação.");
+        }
+    </script>
+</body>
+</html>

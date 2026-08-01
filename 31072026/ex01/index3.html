@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 3</title>
+</head>
+<body>
+    <script>
+        var nome = prompt("Digite seu nome completo:");
+        var idade = parseInt(prompt("Informe a sua idade:"));
+
+        if (idade >= 18) {
+            alert(nome + ", você já POSSUI idade para tirar carteira");
+        } else {
+            var faltam = 18 - idade;
+            alert(nome + ", você ainda NÃO POSSUI idade para tirar carteira, ainda falta(m) " + faltam + " anos.");
+        }
+    </script>
+</body>
+</html>
