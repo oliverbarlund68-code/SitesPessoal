@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Exercícios Thymeleaf</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>Exercício 1: valores do modelo</h1>
+        <h2>Informação de produto</h2>
+        <dl>
+            <dt>Nome do produto</dt>
+            <!-- Acessa o atributo 'prod' definido no controlador -->
+            <dd th:text="${prod.nome}">Nome Exemplo</dd>
+
+            <dt>Preço do produto</dt>
+            <dd th:text="${prod.preco}">0.00</dd>
+        </dl>
+    </body>
+</html>

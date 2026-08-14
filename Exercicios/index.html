@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorteador de Números com Histórico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        
+        .numeros-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .numero-bola {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .historico-secao {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 2px solid #eeeeee;
+            padding-top: 20px;
+        }
+        .item-historico {
+            background-color: #f1f3f5;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bola-pequena {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            background-color: #6c757d;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            margin: 0 2px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sorteio de Números</h1>
+
+        <div>
+            <a th:href="@{/sortear}" class="btn">Sortear 6 Números</a>
+            <a th:href="@{/limpar}" th:if="${not #lists.isEmpty(historico)}" class="btn btn-danger">Limpar Histórico</a>
+        </div>
+
+        <!-- Exibe o sorteio atual -->
+        <div th:if="${numerosAtuais != null}">
+            <h3>Último Resultado:</h3>
+            <div class="numeros-container">
+                <span class="numero-bola" th:each="num : ${numerosAtuais}" th:text="${num}">0</span>
+            </div>
+        </div>
+
+        <!-- Seção de Histórico -->
+        <div class="historico-secao" th:if="${not #lists.isEmpty(historico)}">
+            <h3>Histórico de Sorteios (<span th:text="${#lists.size(historico)}">0</span>)</h3>
+            
+            <!-- Loop para percorrer cada sorteio realizado -->
+            <div class="item-historico" th:each="jogo, stat : ${historico}">
+                <span><strong>Jogo #<span th:text="${#lists.size(historico) - stat.index}">1</span>:</strong></span>
+                <div>
+                    <!-- Loop interno para exibir os números de cada jogo -->
+                    <span class="bola-pequena" th:each="num : ${jogo}" th:text="${num}">0</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
