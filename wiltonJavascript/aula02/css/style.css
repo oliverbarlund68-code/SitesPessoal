@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(57, 146, 225)
+}
+h1 {
+    color:black;
+    text-align:center;
+    margin: 15px;
+    padding: 10px;
+}
+p {
+    color:black;
+    margin: 15px;
+    padding: 10px;
+    text-align: center;
+}
+input {
+    text-align: center;
+    background-color: rgb(163, 164, 163);
+    align-items: center;
+}

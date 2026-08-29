@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercício 4</title>
+  <script type="text/javascript">
+    var nome = prompt("Digite seu nome completo:");
+    var partes = nome.trim().split(/\s+/);
+    var primeiroNome = partes[0].toUpperCase();
+    var restante = partes.slice(1).join(" ").toLowerCase();
+    
+    alert(primeiroNome + (restante ? " " + restante : ""));
+  </script>
+</head>
+<body>
+</body>
+</html>

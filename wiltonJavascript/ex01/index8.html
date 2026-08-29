@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: serif; /* Fonte parecida com a da imagem */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // 1. Pede para o usuário digitar o texto (com o valor padrão igual ao da imagem)
+        let texto = prompt("Digite um texto:", "amor carro bola bexiga caminhão aranha pastel");
+
+        if (texto) {
+            // 2. Separa o texto em um array de palavras pelos espaços
+            let palavras = texto.split(" ");
+            
+            // Objeto para armazenar as palavras agrupadas por letra
+            let gruposDePalavras = {};
+
+            // 3. Agrupa as palavras pela primeira letra
+            palavras.forEach(function(palavra) {
+                // Remove espaços em branco extras e pega a primeira letra em minúsculo
+                let palavraLimpa = palavra.trim().toLowerCase();
+                
+                if (palavraLimpa.length > 0) {
+                    let primeiraLetra = palavraLimpa[0];
+                    
+                    // Se a letra ainda não existe no objeto, cria um array para ela
+                    if (!gruposDePalavras[primeiraLetra]) {
+                        gruposDePalavras[primeiraLetra] = [];
+                    }
+                    
+                    // Adiciona a palavra ao grupo daquela letra
+                    gruposDePalavras[primeiraLetra].push(palavraLimpa);
+                }
+            });
+
+            // Pega as letras (chaves do objeto) e as coloca em ordem alfabética
+            let letrasOrdenadas = Object.keys(gruposDePalavras).sort();
+
+            // 4. Monta o HTML de saída e adiciona na página
+            let resultadoHTML = "";
+
+            letrasOrdenadas.forEach(function(letra) {
+                resultadoHTML += `<p>Palavras iniciadas com a letra ${letra}:</p>`;
+                resultadoHTML += "<ul>";
+                
+                // Adiciona cada palavra como um item da lista
+                gruposDePalavras[letra].forEach(function(palavra) {
+                    resultadoHTML += `<li>${palavra}</li>`;
+                });
+                
+                resultadoHTML += "</ul>";
+            });
+
+            // Substitui o conteúdo do body pelo resultado gerado
+            document.body.innerHTML = resultadoHTML;
+            
+        } else {
+            // Caso o usuário cancele ou não digite nada
+            document.body.innerHTML = "<p>Nenhum texto foi inserido.</p>";
+        }
+    </script>
+</body>
+</html>

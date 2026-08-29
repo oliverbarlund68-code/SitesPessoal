@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercícios 4 e 5</title>
+    <style>
+        table {
+            margin: 0 auto; /* Centraliza a tabela horizontalmente */
+            border-collapse: collapse;
+        }
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><label for="nota1">Nota do 1º Bimestre:</label></td>
+            <td><input type="number" id="nota1" max="50" min="0"></td>
+        </tr>
+        <tr>
+            <td><label for="nota2">Nota do 2º Bimestre:</label></td>
+            <td><input type="number" id="nota2" max="50" min="0"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button onclick="calcularResultado()">Resultado</button>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function calcularResultado() {
+            let nota1 = Number(document.getElementById("nota1").value);
+            let nota2 = Number(document.getElementById("nota2").value);
+            let soma = nota1 + nota2;
+
+            if (soma >= 60) {
+                alert("APROVADO!\nNota final: " + soma + " pontos.");
+            } else {
+                let pontosFaltantes = 60 - soma;
+                alert("REPROVADO!\nFaltaram " + pontosFaltantes + " pontos para a aprovação.");
+            }
+        }
+    </script>
+</body>
+</html>

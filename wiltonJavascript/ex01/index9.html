@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<htm>
+<head>
+  <title>Exercício 9</title>
+  <script type="text/javascript">
+    var texto = prompt("Digite um texto:");
+    
+    // Remove espaços, pontuações e acentos para comparação correta
+    var limpo = texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]/g, "");
+      
+    var invertido = limpo.split("").reverse().join("");
+
+    if (limpo !== "" && limpo === invertido) {
+      alert("O texto informado É um palíndromo!");
+    } else {
+      alert("O texto informado NÃO é um palíndromo.");
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Acesso ao Sistema</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Container com a borda em volta de todo o formulário -->
+    <div class="container-acesso">
+        <h1 class="titulo-acesso">Acesso ao Sistema</h1>
+
+        <table class="tabela-acesso">
+            <tr>
+                <td class="rotulo"><label for="login">Login</label></td>
+                <td><input type="text" id="login"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="rotulo"><label for="senha">Senha</label></td>
+                <td><input type="password" id="senha" maxlength="8"></td>
+                <td><span class="dica-senha">(max. 8 caracteres)</span></td>
+            </tr>
+            <tr>
+                <td class="rotulo"><label for="confirmaSenha">Confirmar Senha</label></td>
+                <td><input type="password" id="confirmaSenha" maxlength="8"></td>
+                <td><span class="dica-senha">(max. 8 caracteres)</span></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="botoes-container">
+                    <button type="button" onclick="validarAcesso()">Entrar</button>
+                    <button type="button" onclick="limparCampos()">Limpar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="js/scrispt.js"></script>
+</body>
+</html>

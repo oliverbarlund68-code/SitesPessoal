@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercícios 1 e 2</title>
+</head>
+<body>
+    <label for="textoExibir">Digite um texto:</label>
+    <input type="text" id="textoExibir">
+    <button onclick="exibirTexto()">Exibir</button>
+
+    <script>
+        function exibirTexto() {
+            // Pega o valor da caixa de texto
+            let texto = document.getElementById("textoExibir").value;
+            // Exibe em caixa de diálogo em letras maiúsculas (Exercício 2)
+            alert(texto.toUpperCase());
+        }
+    </script>
+</body>
+</html>

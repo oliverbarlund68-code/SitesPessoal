@@ -1,0 +1,63 @@
+/* Centraliza a caixa na tela */
+body {
+    font-family: Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin: 0;
+}
+
+/* Moldura externa igual à FIG 1 */
+.container-acesso {
+    border: 1px solid #000;
+    padding: 20px 30px;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Título: 24px, Azul, Verdana, Centralizado */
+.titulo-acesso {
+    color: blue;
+    font-size: 24px;
+    font-family: Verdana, sans-serif;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Estrutura da tabela */
+.tabela-acesso {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.tabela-acesso td {
+    padding: 4px;
+}
+
+/* Alinha os rótulos à direita rente às caixas de texto */
+.rotulo {
+    text-align: right;
+    font-size: 13px;
+    padding-right: 6px;
+}
+
+/* Dica de senha: Vermelho, 10px, Verdana */
+.dica-senha {
+    color: red;
+    font-family: Verdana, sans-serif;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+/* Alinhamento dos botões abaixo do formulário */
+.botoes-container {
+    text-align: center;
+    padding-top: 15px !important;
+}
+
+.botoes-container button {
+    margin: 0 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+}

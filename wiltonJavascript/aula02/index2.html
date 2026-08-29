@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora JavaScript</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .calculadora {
+            background-color: #1e222b;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 260px;
+        }
+        #visor {
+            width: 100%;
+            height: 50px;
+            background-color: #2d3139;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 24px;
+            text-align: right;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #3e4451;
+            color: white;
+            transition: background-color 0.2s;
+        }
+        button:hover { background-color: #4c5363; }
+        button.operador { background-color: #ff9f0a; color: white; }
+        button.operador:hover { background-color: #cc7f08; }
+        button.limpar { background-color: #f44336; color: white; }
+        button.limpar:hover { background-color: #d32f2f; }
+        button.igual { background-color: #4caf50; color: white; grid-column: span 2; }
+        button.igual:hover { background-color: #388e3c; }
+    </style>
+</head>
+<body>
+
+<div class="calculadora">
+    <input type="text" id="visor" readonly value="0">
+    <div class="botoes">
+        <button class="limpar" onclick="limparVisor()">C</button>
+        <button onclick="apagarUltimo()">⌫</button>
+        <button class="operador" onclick="definirOperador('/')">÷</button>
+        <button class="operador" onclick="definirOperador('*')">×</button>
+        
+        <button onclick="adicionarNumero('7')">7</button>
+        <button onclick="adicionarNumero('8')">8</button>
+        <button onclick="adicionarNumero('9')">9</button>
+        <button class="operador" onclick="definirOperador('-')">-</button>
+        
+        <button onclick="adicionarNumero('4')">4</button>
+        <button onclick="adicionarNumero('5')">5</button>
+        <button onclick="adicionarNumero('6')">6</button>
+        <button class="operador" onclick="definirOperador('+')">+</button>
+        
+        <button onclick="adicionarNumero('1')">1</button>
+        <button onclick="adicionarNumero('2')">2</button>
+        <button onclick="adicionarNumero('3')">3</button>
+        <button onclick="adicionarNumero('0')">0</button>
+        
+        <button onclick="adicionarPonto()">.</button>
+        <button class="igual" onclick="calcular()">=</button>
+    </div>
+</div>
+
+<script>
+    // Variáveis de controle de estado
+    let valorAtual = '0';
+    let valorAnterior = '';
+    let operadorAtual = null;
+    let resetarVisor = false;
+
+    const visor = document.getElementById('visor');
+
+    function atualizarVisor() {
+        visor.value = valorAtual;
+    }
+
+    function adicionarNumero(numero) {
+        // Evita múltiplos zeros no início ou limpa a tela se o cálculo anterior terminou
+        if (valorAtual === '0' || resetarVisor) {
+            valorAtual = numero;
+            resetarVisor = false;
+        } else {
+            valorAtual += numero;
+        }
+        atualizarVisor();
+    }
+
+    function adicionarPonto() {
+        if (resetarVisor) {
+            valorAtual = '0';
+            resetarVisor = false;
+        }
+        // Impede que o usuário adicione mais de um ponto decimal
+        if (!valorAtual.includes('.')) {
+            valorAtual += '.';
+        }
+        atualizarVisor();
+    }
+
+    function definirOperador(operador) {
+        if (operadorAtual !== null) {
+            calcular(); // Calcula o resultado parcial se já houver uma operação pendente
+        }
+        valorAnterior = valorAtual;
+        operadorAtual = operador;
+        resetarVisor = true;
+    }
+
+    function calcular() {
+        if (operadorAtual === null || resetarVisor) return;
+
+        const numAnterior = parseFloat(valorAnterior);
+        const numAtual = parseFloat(valorAtual);
+        let resultado = 0;
+
+        // Processa as operações de forma manual e segura
+        switch (operadorAtual) {
+            case '+': resultado = numAnterior + numAtual; break;
+            case '-': resultado = numAnterior - numAtual; break;
+            case '*': resultado = numAnterior * numAtual; break;
+            case '/': 
+                if (numAtual === 0) {
+                    alert("Erro: Divisão por zero!");
+                    limparVisor();
+                    return;
+                }
+                resultado = numAnterior / numAtual; 
+                break;
+            default: return;
+        }
+
+        // Converte o resultado para string, limitando casas decimais longas
+        valorAtual = String(Number(resultado.toFixed(8))); 
+        operadorAtual = null;
+        valorAnterior = '';
+        resetarVisor = true;
+        atualizarVisor();
+    }
+
+    function limparVisor() {
+        valorAtual = '0';
+        valorAnterior = '';
+        operadorAtual = null;
+        resetarVisor = false;
+        atualizarVisor();
+    }
+
+    function apagarUltimo() {
+        if (valorAtual.length > 1) {
+            valorAtual = valorAtual.slice(0, -1);
+        } else {
+            valorAtual = '0';
+        }
+        atualizarVisor();
+    }
+</script>
+
+</body>
+</html>

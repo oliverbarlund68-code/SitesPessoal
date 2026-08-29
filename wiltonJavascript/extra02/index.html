@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Palavras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #resultado {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .grupo-letra {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .letra-destaque {
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Organizador de Palavras</h1>
+    <p>Digite um texto abaixo. O sistema irá extrair todas as palavras e organizá-las pela letra inicial (A a Z).</p>
+
+    <textarea id="textoEntrada" placeholder="Digite seu texto aqui..."></textarea>
+    <br>
+    <button onclick="processarTexto()">Organizar Palavras</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function processarTexto() {
+            const texto = document.getElementById('textoEntrada').value;
+            const resultadoDiv = document.getElementById('resultado');
+            
+            // Limpa o resultado anterior
+            resultadoDiv.innerHTML = '';
+
+            if (!texto.trim()) {
+                resultadoDiv.innerHTML = '<p>Por favor, digite algum texto.</p>';
+                return;
+            }
+
+            // Extrai as palavras ignorando pontuações, números e convertendo para minúsculas
+            // O regex considera letras acentuadas usadas no português
+            const regex = /[a-zà-úç]+/gi;
+            const palavrasEncontradas = texto.toLowerCase().match(regex);
+
+            if (!palavrasEncontradas) {
+                resultadoDiv.innerHTML = '<p>Nenhuma palavra válida encontrada no texto.</p>';
+                return;
+            }
+
+            // Remove palavras duplicadas e ordena alfabeticamente
+            const palavrasUnicas = [...new Set(palavrasEncontradas)].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+            // Cria um objeto para agrupar as palavras pela primeira letra
+            const grupos = {};
+
+            palavrasUnicas.forEach(palavra => {
+                // Pega a primeira letra e remove acentos para agrupar corretamente (ex: 'á' vira 'a')
+                const primeiraLetra = palavra.charAt(0).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                
+                if (!grupos[primeiraLetra]) {
+                    grupos[primeiraLetra] = [];
+                }
+                grupos[primeiraLetra].push(palavra);
+            });
+
+            // Gera o HTML exibindo de A a Z
+            let htmlResultado = '';
+            
+            // Itera pelas letras do alfabeto (códigos ASCII 97 a 122)
+            for (let i = 97; i <= 122; i++) {
+                const letra = String.fromCharCode(i);
+                
+                // Se o grupo da letra existir e tiver palavras
+                if (grupos[letra]) {
+                    htmlResultado += `
+                        <div class="grupo-letra">
+                            <strong class="letra-destaque">${letra.toUpperCase()}:</strong> 
+                            ${grupos[letra].join(', ')}
+                        </div>
+                    `;
+                }
+            }
+
+            resultadoDiv.innerHTML = htmlResultado;
+        }
+    </script>
+</body>
+</html>
