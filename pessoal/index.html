@@ -1,0 +1,275 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo -  Oliver Robert</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #2c3e50;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        header {
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 40px;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        header h1 {
+            margin: 0 0 6px 0;
+            font-size: 24pt;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 12pt;
+            color: #93c5fd;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 9.5pt;
+            color: #cbd5e1;
+            border-top: 1px solid #334155;
+            padding-top: 15px;
+        }
+
+        .contact-info a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 35px 40px;
+        }
+
+        section {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: 13pt;
+            text-transform: uppercase;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin-top: 0;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #3b82f6;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+            font-size: 10.5pt;
+            color: #475569;
+        }
+
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .skills-table th, .skills-table td {
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 10pt;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .skills-table th {
+            background-color: #f8fafc;
+            color: #334155;
+            width: 30%;
+            font-weight: 600;
+        }
+
+        .item {
+            margin-bottom: 16px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .item-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .item-date {
+            font-size: 9.5pt;
+            color: #64748b;
+        }
+
+        .item-subtitle {
+            font-size: 10pt;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        @media print {
+            body { background: none; }
+            .resume-container { box-shadow: none; margin: 0; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="resume-container">
+    <header>
+        <h1>Oliver Robert</h1>
+        <div class="subtitle">Desenvolvedor Backend / Web</div>
+        
+        <div class="contact-info">
+            <span>📍 Uberlândia - MG</span>
+            <span>✉️ <a href="mailto:oliverbarlund68@gmail.com">oliverbarlund68@gmail.com</a></span>
+            <span>📞 (34) 9112-2228</span>
+            <span>🔗 <a href="https://linkedin.com">linkedin.com/in/oliver-robert</a></span>
+            <span>💻 <a href="https://github.com">https://github.com/oliverbarlund68-code</a></span>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Perfil Profissional</h2>
+            <p>
+                Estudante de Tecnologia focado em desenvolvimento backend e web, com experiência prática na construção de 
+                <strong>APIs RESTful com Java e Spring Boot</strong>. Possuo conhecimento na estruturação de aplicações em camadas 
+                (Controller, Service, Repository), desenvolvimento de interfaces com <strong>HTML5, CSS3 e JavaScript</strong>, 
+                além de versionamento de código com Git/GitHub. Busco oportunidades de estágio ou desenvolvimento júnior.
+            </p>
+        </section>
+
+        <section>
+            <h2>Habilidades Técnicas</h2>
+            <table class="skills-table">
+                <tr>
+                    <th>Linguagens</th>
+                    <td>Java, JavaScript, HTML5, CSS3</td>
+                </tr>
+                <tr>
+                    <th>Frameworks & Libs</th>
+                    <td>Spring Boot, Spring Data JPA, Spring Web</td>
+                </tr>
+                <tr>
+                    <th>Arquitetura & APIs</th>
+                    <td>APIs RESTful, Arquitetura em Camadas, JSON</td>
+                </tr>
+                <tr>
+                    <th>Ferramentas</th>
+                    <td>VS Code, Git, GitHub, Postman, Maven</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Projetos em Destaque</h2>
+            
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">API RESTful para Gerenciamento Web</span>
+                    <span class="item-date">2026</span>
+                </div>
+                <div class="item-subtitle">Java & Spring Boot</div>
+                <p>Desenvolvimento de uma API para gerenciamento de dados estruturada em camadas, implementando rotas HTTP e boas práticas do padrão REST.</p>
+                <div>
+                    <span class="badge">Java</span>
+                    <span class="badge">Spring Boot</span>
+                    <span class="badge">REST API</span>
+                    <span class="badge">Postman</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Interface Web Interativa</span>
+                    <span class="item-date">2026</span>
+                </div>
+                <div class="item-subtitle">JavaScript & Frontend</div>
+                <p>Aplicação web interativa com manipulação dinâmica de DOM, rotinas de validação no navegador e layout responsivo.</p>
+                <div>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">HTML5</span>
+                    <span class="badge">CSS3</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Formação Acadêmica</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Curso Superior / Técnico em Tecnologia</span>
+                    <span class="item-date">Em andamento</span>
+                </div>
+                <div class="item-subtitle">Instituto Federal de Educação, Ciência e Tecnologia (IFTM)</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Cursos & Certificações</h2>
+            <div class="item">
+                <ul>
+                    <li><strong>Ecossistema Web & Frameworks Backend:</strong> Estudo de ferramentas e arquiteturas web modernas.</li>
+                    <li><strong>Fundamentos de Web Design & JavaScript:</strong> Desenvolvimento de páginas interativas e manipulação de eventos.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
