@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Jogo dos Felinos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 25px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <h2 id="mensagemBoasVindas"></h2>
+    <button type="button" onclick="entrarComoConvidado()">Entrar como convidado</button>
+  </main>
+
+  <script>
+    const nomeCompleto = localStorage.getItem("nomeCompletoFelinos") || "";
+
+    if (!nomeCompleto) {
+      window.location.href = "index.html";
+    } else {
+      const palavras = nomeCompleto.trim().split(/\s+/);
+      const primeiroNome = palavras[0];
+      const ultimoNome = palavras[palavras.length - 1];
+
+      // Formata: Primeiro Nome + Último Nome + Mensagem
+      document.getElementById("mensagemBoasVindas").innerText = 
+        primeiroNome + " " + ultimoNome + ", seja bem-vindo ao jogo dos Felinos!";
+    }
+
+    function entrarComoConvidado() {
+      window.location.href = "felino.html";
+    }
+  </script>
+
+</body>
+</html>

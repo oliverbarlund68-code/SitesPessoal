@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felinos - Jogo dos Felinos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding-top: 50px;
+    }
+    .galeria {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+    }
+    figure.card-felino {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+      margin: 0;
+      text-align: center;
+    }
+    figure.card-felino img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    figcaption.info {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+      min-height: 50px;
+    }
+    button {
+      padding: 6px 12px;
+      font-size: 12px;
+      background-color: #17a2b8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #138496;
+    }
+    input[type="text"] {
+      width: 80px;
+      margin-top: 5px;
+      text-align: center;
+      padding: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="galeria">
+    <!-- Gato 01 -->
+    <figure class="card-felino">
+      <img src="img/gato01.gif" alt="Gato 01" id="gato01" onclick="cliqueGato01()">
+      <figcaption class="info">Gato 01</figcaption>
+    </figure>
+
+    <!-- Gato 02 -->
+    <figure class="card-felino">
+      <img src="img/gato02.gif" alt="Gato 02" id="gato02" onclick="cliqueGato02()">
+      <figcaption class="info" id="textoCarinhos">Carinhos: 0</figcaption>
+    </figure>
+
+    <!-- Gato 03 -->
+    <figure class="card-felino">
+      <img src="img/gato03.gif" alt="Gato 03" id="gato03" 
+           onmouseover="passarMouseGato03()" 
+           onmouseout="sairMouseGato03()">
+      <figcaption class="info">Gato 03</figcaption>
+    </figure>
+
+    <!-- Gato 04 -->
+    <figure class="card-felino">
+      <img src="img/gato04.gif" alt="Gato 04" id="gato04" 
+           onmousemove="moverMouseGato04()" 
+           onmouseout="sairMouseGato04()">
+      <figcaption class="info" id="textoGato04">lá lá ...</figcaption>
+    </figure>
+
+    <!-- Gato 05 -->
+    <figure class="card-felino">
+      <img src="img/gato05.gif" alt="Gato 05" id="gato05">
+      <figcaption class="info">
+        <button type="button" onclick="gerarNumeroSorte()">Gerar número da sorte</button>
+        <br>
+        <input type="text" id="caixaSorte" readonly aria-label="Número da sorte">
+      </figcaption>
+    </figure>
+      <figure class="card-felino">
+      <img src="img/gato06.gif" alt="Gato 05" id="gato05">
+      <figcaption class="info">
+        <button type="button" onclick="gerarNumeroSorte()">Gerar número da sorte</button>
+        <br>
+        <input type="text" id="caixaSorte" readonly aria-label="Número da sorte">
+      </figcaption>
+    </figure>
+  </main>
+
+  <script>
+    const nomeCompleto = localStorage.getItem("nomeCompletoFelinos") || "";
+    const palavras = nomeCompleto.trim().split(/\s+/);
+    const primeiroNome = palavras[0] || "Usuário";
+
+    // Gato 01: Mensagem personalizada com primeiro nome
+    function cliqueGato01() {
+      alert("Oi " + primeiroNome + ", tudo bem com você?");
+    }
+
+    // Gato 02: Contador de carinhos
+    let totalCarinhos = 0;
+    function cliqueGato02() {
+      totalCarinhos++;
+      document.getElementById("textoCarinhos").innerText = "Carinhos: " + totalCarinhos;
+    }
+
+    // Gato 03: Troca pela imagem gato06.gif ao passar o mouse
+    function passarMouseGato03() {
+      document.getElementById("gato03").src = "Imagens/gato06.gif";
+    }
+    function sairMouseGato03() {
+      document.getElementById("gato03").src = "Imagens/gato03.gif";
+    }
+
+    // Gato 04: Troca texto para "Ai, pare de fazer cócegas!" ao mover o cursor
+    function moverMouseGato04() {
+      document.getElementById("textoGato04").innerText = "Ai, pare de fazer cócegas!";
+    }
+    function sairMouseGato04() {
+      document.getElementById("textoGato04").innerText = "lá lá ...";
+    }
+
+    // Gato 05: Número aleatório entre 1 e 100
+    function gerarNumeroSorte() {
+      const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+      document.getElementById("caixaSorte").value = numeroAleatorio;
+    }
+  </script>
+
+</body>
+</html>

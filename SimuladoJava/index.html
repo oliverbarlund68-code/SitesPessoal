@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início - Jogo dos Felinos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    // Mensagem inicial requerida pelo enunciado
+    alert("Olá, seja bem-vindo!");
+  </script>
+
+  <main class="box">
+    <form onsubmit="event.preventDefault(); validarEEntrar();">
+      <label for="nomeCompleto">Nome completo:</label>
+      <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Informe nome e sobrenome" required>
+      <button type="submit">Entrar</button>
+    </form>
+  </main>
+
+  <script>
+    function validarEEntrar() {
+      const input = document.getElementById("nomeCompleto").value.trim();
+
+      if (input === "") {
+        alert("Por favor, preencha o campo Nome completo.");
+        return;
+      }
+
+      // Separa por espaços para validar quantidade de palavras
+      const palavras = input.split(/\s+/);
+
+      if (palavras.length < 2) {
+        alert("Por favor, informe pelo menos NOME + SOBRENOME.");
+        return;
+      }
+
+      // Salva no navegador para uso posterior
+      localStorage.setItem("nomeCompletoFelinos", input);
+
+      // Redireciona para o menu.html
+      window.location.href = "menu.html";
+    }
+  </script>
+
+</body>
+</html>
