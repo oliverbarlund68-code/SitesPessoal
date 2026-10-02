@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shadow Runner</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<main class="site">
+<header><strong>◆ SHADOW RUNNER</strong><span>VERSÃO 2</span></header>
+<section class="game">
+<canvas id="game" width="590" height="335"></canvas>
+<div class="overlay" id="menu"><div class="panel">
+<small>AVENTURA • PLATAFORMA</small><h1>SHADOW <em>RUNNER</em></h1>
+<p>Explore os telhados, colete moedas e enfrente os guardas.</p>
+<button id="start">JOGAR ▶</button>
+<div class="hint">Setas para mover · Espaço para pular · X para atacar</div>
+</div></div>
+<div class="overlay hidden" id="pause"><div class="panel">
+<h2 id="pauseTitle">PAUSADO</h2><button id="resume">CONTINUAR</button>
+<button class="secondary" id="restart">REINICIAR</button>
+</div></div>
+</section>
+<div class="controls">
+<button id="left">◀</button><button id="jump">▲</button><button id="attack">⚔</button><button id="right">▶</button>
+</div>
+<p class="help">PC: ← → mover · ↑ / Espaço pular · X atacar · Esc pausar</p>
+</main>
+<script src="js/script.js"></script>
+</body></html>
