@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Velha - Projeto Final JS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- TELA DE CADASTRO (Modal/Overlay) -->
+  <div id="registration-screen" class="modal-overlay">
+    <div class="modal-card">
+      <h2>Cadastro dos Jogadores</h2>
+      <p>Preencha os nomes para iniciar a partida:</p>
+
+      <form id="player-form">
+        <div class="form-group">
+          <label for="p1-name">Jogador 1 (X):</label>
+          <input type="text" id="p1-name" placeholder="Digite o nome do X" required maxLength="12">
+        </div>
+
+        <div class="form-group" id="p2-group">
+          <label for="p2-name">Jogador 2 (O):</label>
+          <input type="text" id="p2-name" placeholder="Digite o nome do O" required maxLength="12">
+        </div>
+
+        <button type="submit" class="btn primary full-width">Iniciar Jogo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTAINER PRINCIPAL DO JOGO -->
+  <div class="container hidden" id="game-container">
+    <header>
+      <h1>Jogo da Velha</h1>
+      <div class="controls-top">
+        <div class="select-wrapper">
+          <label for="mode-select">Modo:</label>
+          <select id="mode-select">
+            <option value="pvp">2 Jogadores (Local)</option>
+            <option value="easy">Vs IA (Fácil)</option>
+            <option value="hard" selected>Vs IA (Imbatível)</option>
+          </select>
+        </div>
+        <button id="sound-btn" class="icon-btn" title="Alternar Som">
+          <span id="sound-icon">🔊</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Placar Dinâmico -->
+    <section class="scoreboard">
+      <div class="score-card player-x">
+        <span id="name-x" class="player-name">Jogador X</span>
+        <span id="score-x" class="score-num">0</span>
+      </div>
+      <div class="score-card ties">
+        <span class="player-name">Empates</span>
+        <span id="score-ties" class="score-num">0</span>
+      </div>
+      <div class="score-card player-o">
+        <span id="name-o" class="player-name">Jogador O</span>
+        <span id="score-o" class="score-num">0</span>
+      </div>
+    </section>
+
+    <!-- Status do Turno -->
+    <div id="status" class="status-msg">Vez do Jogador X</div>
+
+    <!-- Tabuleiro -->
+    <main class="board-container">
+      <div class="board" id="board">
+        <button class="cell" data-index="0" aria-label="Quadrado 1"></button>
+        <button class="cell" data-index="1" aria-label="Quadrado 2"></button>
+        <button class="cell" data-index="2" aria-label="Quadrado 3"></button>
+        <button class="cell" data-index="3" aria-label="Quadrado 4"></button>
+        <button class="cell" data-index="4" aria-label="Quadrado 5"></button>
+        <button class="cell" data-index="5" aria-label="Quadrado 6"></button>
+        <button class="cell" data-index="6" aria-label="Quadrado 7"></button>
+        <button class="cell" data-index="7" aria-label="Quadrado 8"></button>
+        <button class="cell" data-index="8" aria-label="Quadrado 9"></button>
+      </div>
+    </main>
+
+    <!-- Botões de Ação -->
+    <footer class="actions">
+      <button id="restart-btn" class="btn primary">Próxima Rodada</button>
+      <button id="change-players-btn" class="btn secondary">Trocar Jogadores</button>
+    </footer>
+  </div>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
