@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Neon - Cadastro e Jogo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="logo">TETRIS<span class="highlight">NEON</span></h1>
+      <div id="user-bar" class="user-bar hidden">
+        <span class="user-avatar" id="bar-avatar">🎮</span>
+        <span class="user-name" id="bar-username">Jogador</span>
+        <button id="btn-logout" class="btn-secondary">Sair</button>
+      </div>
+    </header>
+
+    <!-- Modal / Seção de Cadastro -->
+    <div id="auth-modal" class="modal-overlay">
+      <div class="modal-card">
+        <h2>Criar Perfil de Jogador</h2>
+        <p>Cadastre-se para registrar suas pontuações no placar!</p>
+        <form id="auth-form">
+          <div class="form-group">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" placeholder="Ex: CyberPlayer99" maxlength="15" required>
+          </div>
+          <div class="form-group">
+            <label>Escolha seu Avatar:</label>
+            <div class="avatar-selector">
+              <label><input type="radio" name="avatar" value="🎮" checked> 🎮</label>
+              <label><input type="radio" name="avatar" value="⚡"> ⚡</label>
+              <label><input type="radio" name="avatar" value="👾"> 👾</label>
+              <label><input type="radio" name="avatar" value="🔥"> 🔥</label>
+              <label><input type="radio" name="avatar" value="🚀"> 🚀</label>
+              <label><input type="radio" name="avatar" value="👑"> 👑</label>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary">Entrar no Jogo</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Conteúdo Principal do Jogo -->
+    <main class="game-wrapper">
+      <!-- Painel Esquerdo: Hold + Instruções -->
+      <aside class="panel left-panel">
+        <div class="card hold-card">
+          <h3>Guardar (C / Shift)</h3>
+          <canvas id="hold-canvas" width="120" height="120"></canvas>
+        </div>
+        
+        <div class="card controls-card">
+          <h3>Controles</h3>
+          <ul>
+            <li><span class="key">←</span> <span class="key">→</span> Mover</li>
+            <li><span class="key">↑</span> / <span class="key">X</span> Girar</li>
+            <li><span class="key">↓</span> Soft Drop</li>
+            <li><span class="key">Espaço</span> Hard Drop</li>
+            <li><span class="key">C</span> Guardar</li>
+            <li><span class="key">P</span> Pausar</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Central: Canvas do Tetris -->
+      <section class="board-section">
+        <div class="canvas-container">
+          <canvas id="tetris-canvas" width="300" height="600"></canvas>
+          
+          <!-- Overlays -->
+          <div id="start-overlay" class="game-overlay">
+            <h2>Pronto para Jogar?</h2>
+            <button id="btn-start" class="btn-primary btn-large">INICIAR JOGO</button>
+          </div>
+
+          <div id="pause-overlay" class="game-overlay hidden">
+            <h2>JOGO PAUSADO</h2>
+            <button id="btn-resume" class="btn-primary">Continuar</button>
+          </div>
+
+          <div id="gameover-overlay" class="game-overlay hidden">
+            <h2 class="text-danger">FIM DE JOGO</h2>
+            <p>Pontuação Final: <span id="final-score">0</span></p>
+            <button id="btn-restart" class="btn-primary btn-large">Jogar Novamente</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Painel Direito: Stats + Next + Placar -->
+      <aside class="panel right-panel">
+        <div class="card next-card">
+          <h3>Próxima Peça</h3>
+          <canvas id="next-canvas" width="120" height="120"></canvas>
+        </div>
+
+        <div class="card stats-card">
+          <div class="stat-box">
+            <span class="label">Pontos</span>
+            <span class="value" id="score-val">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Nível</span>
+            <span class="value" id="level-val">1</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">Linhas</span>
+            <span class="value" id="lines-val">0</span>
+          </div>
+        </div>
+
+        <div class="card leaderboard-card">
+          <h3>Ranking Top 5</h3>
+          <ol id="leaderboard-list" class="leaderboard-list">
+            <li>Nenhum recorde ainda</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Controles Touch para Mobile -->
+    <div class="mobile-controls">
+      <div class="touch-row">
+        <button id="touch-hold" class="btn-touch">GUARDAR</button>
+        <button id="touch-rotate" class="btn-touch">GIRAR</button>
+        <button id="touch-pause" class="btn-touch">PAUSA</button>
+      </div>
+      <div class="touch-row">
+        <button id="touch-left" class="btn-touch">◄</button>
+        <button id="touch-down" class="btn-touch">▼</button>
+        <button id="touch-right" class="btn-touch">►</button>
+        <button id="touch-drop" class="btn-touch btn-accent">DROP</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
