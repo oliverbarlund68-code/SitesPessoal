@@ -1,0 +1,91 @@
+/* ============================================================
+   ESTILOS ADICIONAIS E IMPRESSÃO (PDF)
+   ============================================================ */
+
+/* Transição suave ao trocar de tema */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ajustes visuais no modo claro */
+html:not(.dark) body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+html:not(.dark) .printable-card {
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+    color: #1f2937;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark) h1, 
+html:not(.dark) h2, 
+html:not(.dark) h3, 
+html:not(.dark) h4 {
+    color: #111827;
+}
+
+html:not(.dark) .bg-gray-900\/50 {
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
+}
+
+html:not(.dark) .border-gray-700 {
+    border-color: #e5e7eb;
+}
+
+html:not(.dark) .text-gray-300 {
+    color: #4b5563;
+}
+
+html:not(.dark) .text-gray-400 {
+    color: #6b7280;
+}
+
+/* ============================================================
+   REGRAS DE IMPRESSÃO (@media print)
+   Garante que o PDF saia perfeito em folha A4
+   ============================================================ */
+@media print {
+    /* Oculta botões e barras de navegação */
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .printable-card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        background-color: transparent !important;
+    }
+
+    /* Cores de texto pretas/escuras para leitura clara na folha */
+    h1, h2, h3, h4, p, span, li, div {
+        color: #000000 !important;
+    }
+
+    .text-blue-400, .text-blue-500 {
+        color: #1d4ed8 !important;
+    }
+
+    .bg-gray-900\/50 {
+        background-color: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    /* Ajustes para evitar quebra de página no meio dos cartões */
+    section, .bg-gray-900\/50 {
+        page-break-inside: avoid;
+    }
+}
