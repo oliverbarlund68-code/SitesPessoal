@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Mercado Pagina Inicial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1><u>Meu Mercado</u></h1>
+        <p id="TextoPrincipal"><strong><u>Bem Vindo</u></strong></p>
+        <a href="https://www.google.com/">Clique Aqui</a>
+        <br>
+    </header>
+    <hr>
+    <main>
+        <br>
+        <p><u>Lista De Compras</u></p>
+        <br>
+        <button>Adicionar itens</button>
+    </main>
+        <section>
+            <h2> Cadastrar Produto</h2>
+            <input type="text" id="txt" placeholder="Digite Aqui o Produto">
+            <input type="number" id="btnButtun" placeholder="Coloque a quantidade">
+            <input type="date" id="txtDate">
+        </section>
+    <main id="main">
+        <section class="produtos">
+            <h2>Principais Produtos da Loja</h2>
+            <p><u>Banana</u></p>
+            <p><u>Ketchup</u></p>
+            <p><u>Arroz</u></p>
+            <p><u>Coca Cola</u></p>
+        </section>
+        <br>
+    </main>
+    <hr><br>
+    <label id="Categoria">
+        <h2>Aréa De Produtos</h2>
+        <p><u>Banana Prata</u></p>
+        <p><strong>Preço 12 Reais Por KG</strong></p>
+        <img src="img/Banana.webp">
+        <p><u>Ketchup Heinz</u></p>
+        <p><strong>Preço 20 Reais</strong></p>
+        <img src="img/molho.jpg" width="275">
+        <p><u>Doritos</u></p>
+        <p><strong>Preço 14 Reais</strong></p>
+        <img src="img/Doritos.jpg" width="275">
+        <p><u>Arroz Vasconcelos</u></p>
+        <p><strong>Preço 42,99 Reais</strong></p>
+        <img src="img/Arroz.jpg" width="275">
+        <P><u>Coca Cola 1,5 Litro</u></P>
+        <p><strong>Preço 17 Reais</strong></p>
+        <img src="img/Coca.jpg" width="275">
+    </label>
+    <hr>
+    <form class="form">
+        <label for="quantidade">Digite uma quantidade</label><br>
+        <label>
+            <input type="text" id="quantidade">
+        </label>
+        <br>
+        <br>
+        <label for="produtos">Selecione um Produto</label>
+        <select class="prod" id="produtos">
+            <option>Arroz</option>
+            <option>Ketchup</option>
+            <option>Doritos</option>
+            <option>Banana</option>
+            <option>Coca Cola</option>
+        </select>
+        <button class="button" type="submit">Enviar</button>
+    </form>
+       <form class="formPagamento">
+        <label for="quantidade">Coloque Os Produtos Escolhidos</label><br>
+        <label>
+            <input type="text" id="quantidade">
+        </label>
+        <br>
+        <br>
+        <label for="produtos">Selecione o pagamento</label>
+        <select class="prod" id="produtos">
+            <option>PIX</option>
+            <option>Cartão De Credito</option>
+            <option>Cartão De Debito</option>
+            <option>Vale Alimentanção</option>
+            <option>Dinheiro Fisico</option>
+        </select>
+        <button class="button" type="submit">Enviar</button>
+    </form>
+    <hr>
+    <h2>Tabela dos Produtos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>PRODUTO(S)</th>
+                <th>CLIENTE(S)</th>
+                <th>QUANTIDADE(S)</th>
+                <th>Preço Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Doritos Coca Cola</td>
+                <td>Maria Luiza</td>
+                <td>20</td>
+                <td>120 Reais</td>
+            </tr>
+            <td>Banana Arroz</td>
+            <td>Zeca Carlos</td>
+            <td>15</td>
+            <td>80 Reais</td>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <footer>
+        <p>@ Desenvolvido  no curso de PWA</p>
+    </footer>
+</body>
+</html>
