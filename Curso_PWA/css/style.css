@@ -16,8 +16,9 @@ h1 {
     color:chocolate;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
+    font-size: 30px;
     font-weight: bold;
+    padding: 15px;
 }
 p {
     font-family: Arial, Helvetica, sans-serif;
@@ -34,6 +35,7 @@ img {
     border: solid black 2px;
     border-radius: 3px;
     image-rendering: auto;
+    box-shadow: 0 10px 20px;
 }
 .main {
     display: flex;
@@ -50,16 +52,17 @@ img {
     justify-content: center;
 }
 .form {
-    display: flex;
+    display: inline-flexbox;
     flex-direction: column;
     width: 205px;
     height: 170px;
-    background-color: #fca311;
+    background-color: firebrick;
     border-radius: 10px;
     align-items: center;
-    border: 2px solid crimson;
+    border: 2px solid black;
     padding: 20px;
     margin: 10px;
+    box-shadow: 0 10px 20px;
 }
 .prod {
     width: 70%;
@@ -94,14 +97,22 @@ th {
     margin-top: 12px;
 }
 .formPagamento {
-display: flex;
+display: inline-flexbox;
     flex-direction: column;
     width: 205px;
     height: 170px;
     background-color: #0096c7;
     border-radius: 10px;
     align-items: center;
-    border: 2px solid crimson;
+    border: 2px solid black;
     padding: 20px;
     margin: 10px;
+    font-size: medium;
+    text-align: center;
+    box-shadow: 0 10px 20px;
+}
+a {
+    color: Black;
+    border: 2px solid black;
+    border-radius: 4px;
 }
