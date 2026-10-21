@@ -116,3 +116,27 @@ a {
     border: 2px solid black;
     border-radius: 4px;
 }
+.botao-bonito {
+  background-color: #4f46e5; /* Cor de fundo (roxo moderno) */
+  color: #ffffff;            /* Cor do texto */
+  font-size: 16px;           /* Tamanho da fonte */
+  font-weight: 600;          /* Espessura da fonte */
+  padding: 12px 24px;        /* Espaçamento interno (cima/baixo e lados) */
+  border: none;              /* Remove a borda padrão */
+  border-radius: 8px;        /* Bordas arredondadas */
+  cursor: pointer;           /* Muda o cursor para a mãozinha */
+  transition: all 0.3s ease; /* Suaviza a animação */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Efeito ao passar o mouse */
+.botao-bonito:hover {
+  background-color: #4338ca; /* Cor de fundo mais escura no hover */
+  transform: translateY(-2px); /* Efeito de leve elevação */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais intensa */
+}
+
+/* Efeito ao clicar */
+.botao-bonito:active {
+  transform: translateY(0);  /* Retorna à posição original ao clicar */
+}

@@ -1,0 +1,20 @@
+body {
+  background-color: #f4f6f8;
+}
+
+main.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+button.btn {
+  border-radius: 8px;
+}
