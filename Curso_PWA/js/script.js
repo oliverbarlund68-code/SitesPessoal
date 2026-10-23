@@ -26,12 +26,59 @@ switch(opcaoMenu) {
     default:
     console.log("Opção Invalida");
 }
-const NumeroEscolhido = 6;
-for(const NumeroEscolhido = 10; NumeroEscolhido <= 5; NumeroEscolhido++) {
-    console.log(NumeroEscolhido);
+for(let i = 10; i <= 5; i++) {
+    console.log(i);
 }
-const Teste = 5;
-while(Teste >= 10) {
-    console.log("Numero Escolhido");
-    Teste++;
+let numeroSoma = 1;
+let soma = 0;
+while(numeroSoma >= 10) {
+    soma +=  numeroSoma;
+    numeroSoma++;
 }
+console.log("Contagem Regressiva");
+let contagem = 5;
+
+do {
+    console.log(contagem);
+    contagem--;
+} while (contagem >= 1);
+
+function maiorNumero(a, b) {
+   if(a > b) {
+      return a;
+   } else {
+      return b;
+   }
+}
+console.log(maiorNumero(10, 7));
+console.log(maiorNumero(4, 9));
+
+const conta = soma => soma * 2;
+
+function calcularDesconto(preco) {
+    console.log("Seu Preço É: " + preco);
+}
+const resultadoMercado = calcularDesconto(20, 10);
+console.log(resultadoMercado * 2);
+
+const produtos = {
+    nome: "Coca",
+    preco: 12.40,
+    disponivel: true
+};
+
+console.log(produtos.nome);
+console.log(produtos.preco);
+
+const botao = document.querySelector("#botao");
+const resultado = document.querySelector("#resultado");
+
+botao.addEventListener("click", () => {
+    resultado.textContent = "Produto Cadastrado Obrigado";
+});
+const avalicao = document.querySelector("#avaliacao");
+const avaliado = document.querySelector("#avaliado");
+
+avalicao.addEventListener("click", () => {
+    avaliado.textContent = "Obrigado pela avaliação"
+});

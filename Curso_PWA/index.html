@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1><u>Meu Mercado</u></h1>
+        <h1 id="TituloPrincipal"><u>Meu Mercado</u></h1>
         <p id="TextoPrincipal"><strong><u>Bem Vindo</u></strong></p>
         <a href="https://www.procon.sp.gov.br/">Site De Reclamação ao Cliente</a>
         <br>
@@ -18,7 +18,8 @@
         <br>
         <p><u>Lista De Compras</u></p>
         <br>
-       <button class="botao-bonito">Cadastrar Produto</button>
+       <button class="botao-bonito" id="botao">Cadastrar Produto</button>
+       <p id="resultado"></p>
     </main>
         <section>
             <h2> Cadastrar Produto</h2>
@@ -122,6 +123,12 @@
     <footer>
         <p>@ Desenvolvido  no curso de PWA</p>
         <h2><u>Obrigado e volte sempre</u></h2>
+        <br>
+        <p>Qual A Nota Do Nosso Site</p>
+        <button id="avaliacao">Clicar para avaliar</button>
+        <input type="number" value="botao" placeholder="de 0 até 10">
+        <p id="avaliado"></p>
+        <img src="img/mercado.jpg" alt="agradecimento">
     </footer>
      <script src="js/script.js" defer></script>
 </body>

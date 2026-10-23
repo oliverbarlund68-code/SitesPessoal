@@ -115,6 +115,7 @@ a {
     color: Black;
     border: 2px solid black;
     border-radius: 4px;
+    margin: 10px;
 }
 .botao-bonito {
   background-color: #4f46e5; /* Cor de fundo (roxo moderno) */
@@ -139,4 +140,19 @@ a {
 /* Efeito ao clicar */
 .botao-bonito:active {
   transform: translateY(0);  /* Retorna à posição original ao clicar */
+}
+hr {
+    padding: 10px;
+    background-color: black;
+}
+/* Estilo padrão para telas grandes */
+.container {
+  width: 50%;
+}
+
+/* Altera o estilo para telas de até 768px (celulares e tablets) */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
 }
