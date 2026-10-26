@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho Simples</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+
+  <!-- Container centralizador -->
+  <main class="container">
+    <div class="cart-card">
+      <h2>Carrinho de Compras</h2>
+      
+      <div class="cart-items">
+        <p>Itens adicionados: <span id="cart-count">0</span></p>
+        <p>Total: R$ <span id="cart-total">0,00</span></p>
+      </div>
+
+      <!-- Área de simulação de produto -->
+      <div class="product-item">
+        <span>Camiseta Básica - R$ 50,00</span>
+        <button id="add-btn">Adicionar</button>
+      </div>
+
+      <button id="checkout-btn">Finalizar Compra</button>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
