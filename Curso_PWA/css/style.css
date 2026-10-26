@@ -145,14 +145,14 @@ hr {
     padding: 10px;
     background-color: black;
 }
-/* Estilo padrão para telas grandes */
+/* Estilo padrão para telas maiores (Desktop) */
 .container {
-  width: 50%;
+  display: flex;
 }
 
-/* Altera o estilo para telas de até 768px (celulares e tablets) */
+/* Quando a tela tiver no máximo 768px (Tablets e Celulares) */
 @media (max-width: 768px) {
   .container {
-    width: 100%;
+    flex-direction: column-reverse; /* Empilha os elementos em vez de deixar lado a lado */
   }
 }

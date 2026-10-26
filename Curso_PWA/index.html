@@ -18,9 +18,22 @@
         <br>
         <p><u>Lista De Compras</u></p>
         <br>
-       <button class="botao-bonito" id="botao">Cadastrar Produto</button>
+       <button class="botao-bonito" id="botao" onclick="Bonito()">Cadastrar Produto</button>
        <p id="resultado"></p>
+       <input type="text" id="inputTarefa" placeholder="Digite um item...">
+       <button id="botaoAdicionar">Adicionar</button>
+
+       <ul id="listaTarefas"></ul>
     </main>
+    <form id="formProduto">
+  <input type="text" id="nomeProduto" placeholder="Nome do produto" required />
+  <input type="number" id="precoProduto" placeholder="Preço (R$)" step="0.01" required />
+  <input type="text" id="categoriaProduto" placeholder="Categoria" required />
+  <button type="submit">Cadastrar Produto</button>
+</form>
+
+<div id="listaProdutos"></div>
+
         <section>
             <h2> Cadastrar Produto</h2>
             <input type="text" id="txt" placeholder="Digite Aqui o Produto">

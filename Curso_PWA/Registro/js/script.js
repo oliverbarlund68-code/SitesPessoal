@@ -90,3 +90,35 @@ aluno.curso = "Ciência da Computação";
 // Verificar o objeto atualizado
 console.log("Novo curso: " + aluno.curso);
 console.log(aluno);
+
+const campoTarefa = document.querySelector("#tarefa");
+const botaoAdicionar = document.querySelector("#.adicionar");
+
+const tarefas = [];
+function atualizarContador() {
+      campoTarefa.textContent = "Tarefas cadastradas: " + tarefas.length;
+}
+function adicionarTarefa() {
+   const texto = campoTarefa.value.trim();
+   if (texto === "") {
+      window.alert("Digite uma tarefa antes de adicionar");
+      return;
+   }
+   const tarefa = {
+      texto: texto,
+      concluida: false
+   };
+   tarefa.push(tarefa);
+   const item = document.createElement("li");
+   item.textContent = tarefa.texto + " ";
+   const botaoRemover = document.createElement("button");
+   botaoRemover.textContent = "X";
+}
+function removerTarefa() {
+   const indice = tafera.indexOf(tarefas);
+   if (indice !== -1) {
+      tarefas.splice(indice, 1);
+   }
+   item.remove();
+   atualizarContador();
+}
