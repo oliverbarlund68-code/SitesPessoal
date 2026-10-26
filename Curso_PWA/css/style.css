@@ -153,6 +153,7 @@ hr {
 /* Quando a tela tiver no máximo 768px (Tablets e Celulares) */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column-reverse; /* Empilha os elementos em vez de deixar lado a lado */
+    flex-direction: column;
+    display: flex; /* Empilha os elementos em vez de deixar lado a lado */
   }
 }
