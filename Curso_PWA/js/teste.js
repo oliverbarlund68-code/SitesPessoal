@@ -62,3 +62,20 @@ inputTarefa.addEventListener("keypress", function(e) {
         adicionarTarefa();
     }
 });
+document.addEventListener("DOMContentLoaded", function() {
+     const formulário = document.querySelector("#meu-formulario");
+
+     formulário.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let nome = document.querySelector("#nome").value;
+        let precoReal = parseFloat(document.querySelector("#preco").value);
+
+        if (nome.trim() === "" || precoReal <= 0) {
+            console.log("Erro: Nome ou preço invalido.");
+            return;
+
+            console.log("Produto adicionado:" + nome);
+        }
+     })
+})

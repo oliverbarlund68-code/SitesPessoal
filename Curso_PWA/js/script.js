@@ -26,15 +26,16 @@ switch(opcaoMenu) {
     default:
     console.log("Opção Invalida");
 }
-for(let i = 10; i <= 5; i++) {
+for(let i = 10; i >= 5; i--) {
     console.log(i);
 }
 let numeroSoma = 1;
 let soma = 0;
-while(numeroSoma >= 10) {
-    soma +=  numeroSoma;
+while(numeroSoma <= 10) {
+    soma += numeroSoma;
     numeroSoma++;
 }
+console.log("Soma total:", soma);
 console.log("Contagem Regressiva");
 let contagem = 5;
 
@@ -129,7 +130,7 @@ function Bonito() {
     window.alert("Produto Registrado");
     console.log("Analise De Dados Do Dev");
 }
-const mercadoria = document.getElementById("produto").value;
+const mercadoria = document.getElementById("botao").value;
 document.getElementById("resultado").textContent = "Produto: Banana";
 
 // Seleciona os elementos do HTML
@@ -192,3 +193,17 @@ function removerProduto(index) {
 
 // Renderiza os produtos salvos assim que a página carregar
 renderizarProdutos();
+//Armazenamento do LocalStorage
+localStorage.setItem("Usuario", "Oliver");
+const usuario = localStorage.getItem("Usuario");
+console.log(usuario);
+//Remove o Armazenamento
+localStorage.removeItem("Usuario");
+
+// 1. Recupera o contador convertendo para número, assumindo 0 se não existir
+let contador = Number(localStorage.getItem("Number")) || 0;
+
+// 2. Exemplo de uso: incrementa o contador e guarda-o novamente
+contador++;
+localStorage.setItem("Number", contador);
+console.log("Contador atualizado no LocalStorage:", contador);

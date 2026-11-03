@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Alunos</title>
+    <!-- Tailwind CSS CDN para estilos responsivos e limpos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para ícones modernos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonte Google Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Custom Scrollbar para tabelas */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .toast-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Container do Toast Notification -->
+    <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Cabeçalho Principal -->
+    <header class="bg-indigo-600 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-indigo-600 p-2 rounded-lg shadow-inner">
+                    <i class="fa-solid fa-user-gradient fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">EduManager</h1>
+                    <p class="text-xs text-indigo-200">Sistema de Cadastro Acadêmico</p>
+                </div>
+            </div>
+            <div class="text-sm bg-indigo-700 px-3 py-1.5 rounded-full text-indigo-100 flex items-center gap-2">
+                <i class="fa-solid fa-users text-xs"></i>
+                <span>Total Alunos: <strong id="totalCountBadge" class="text-white">0</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- SEÇÃO 1: FORMULÁRIO DE CADASTRO/EDIÇÃO (4 Cols em telas grandes) -->
+            <section class="lg:col-span-5 xl:col-span-4">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-24">
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex justify-between items-center">
+                        <h2 id="formTitle" class="text-lg font-semibold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-user-plus text-indigo-600" id="formIcon"></i>
+                            <span>Cadastrar Aluno</span>
+                        </h2>
+                        <button id="btnCancelEdit" class="hidden text-xs text-slate-500 hover:text-slate-700 bg-slate-200 hover:bg-slate-300 px-2 py-1 rounded transition">
+                            Cancelar Edição
+                        </button>
+                    </div>
+
+                    <form id="studentForm" class="p-6 space-y-4" novalidate>
+                        <!-- Campo Oculto para ID de Edição -->
+                        <input type="hidden" id="studentId" value="">
+
+                        <!-- Nome Completo -->
+                        <div>
+                            <label for="fullName" class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
+                                Nome Completo <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-user text-sm"></i>
+                                </span>
+                                <input type="text" id="fullName" placeholder="Ex: Ana Maria Silva" 
+                                    class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                            </div>
+                            <span class="text-xs text-red-500 hidden mt-1" id="errFullName">Nome é obrigatório (mín. 3 caracteres).</span>
+                        </div>
+
+                        <!-- E-mail -->
+                        <div>
+                            <label for="email" class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
+                                E-mail Acadêmico <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-envelope text-sm"></i>
+                                </span>
+                                <input type="email" id="email" placeholder="aluno@universidade.edu.br" 
+                                    class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                            </div>
+                            <span class="text-xs text-red-500 hidden mt-1" id="errEmail">Digite um e-mail válido.</span>
+                        </div>
+
+                        <!-- Grid para Matrícula e Data Nasc. -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Matrícula / RA -->
+                            <div>
+                                <label for="registration" class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
+                                    Matrícula (RA) <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-id-card text-sm"></i>
+                                    </span>
+                                    <input type="text" id="registration" placeholder="20261001" 
+                                        class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                </div>
+                                <span class="text-xs text-red-500 hidden mt-1" id="errRegistration">Matrícula é obrigatória.</span>
+                            </div>
+
+                            <!-- Data de Nascimento -->
+                            <div>
+                                <label for="birthDate" class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
+                                    Nascimento <span class="text-red-500">*</span>
+                                </label>
+                                <input type="date" id="birthDate" 
+                                    class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                <span class="text-xs text-red-500 hidden mt-1" id="errBirthDate">Data inválida.</span>
+                            </div>
+                        </div>
+
+                        <!-- Curso -->
+                        <div>
+                            <label for="course" class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
+                                Curso <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-book-open text-sm"></i>
+                                </span>
+                                <select id="course" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition appearance-none">
+                                    <option value="">Selecione um curso...</option>
+                                    <option value="Ciência da Computação">Ciência da Computação</option>
+                                    <option value="Engenharia de Software">Engenharia de Software</option>
+                                    <option value="Sistemas de Informação">Sistemas de Informação</option>
+                                    <option value="Análise e Des. de Sistemas">Análise e Des. de Sistemas</option>
+                                    <option value="Administração">Administração</option>
+                                    <option value="Medicina">Medicina</option>
+                                    <option value="Direito">Direito</option>
+                                </select>
+                                <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </span>
+                            </div>
+                            <span class="text-xs text-red-500 hidden mt-1" id="errCourse">Selecione um curso.</span>
+                        </div>
+
+                        <!-- Botão de Ação -->
+                        <div class="pt-2">
+                            <button type="submit" id="btnSubmit" 
+                                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg shadow hover:shadow-md transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span id="btnSubmitText">Cadastrar Aluno</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 2: LISTA DE ALUNOS & TABELA (7 Cols em telas grandes) -->
+            <section class="lg:col-span-7 xl:col-span-8 flex flex-col">
+                <!-- Filtros e Ações de Topo -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="relative w-full sm:w-80">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="Buscar por Nome ou Matrícula..." 
+                            class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <button id="btnClearSearch" class="text-xs text-slate-500 hover:text-slate-800 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition flex items-center gap-1">
+                            <i class="fa-solid fa-rotate-left"></i> Limpar Filtro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card da Tabela -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex-grow flex flex-col">
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                                    <th class="py-3.5 px-4">Aluno</th>
+                                    <th class="py-3.5 px-4">Matrícula</th>
+                                    <th class="py-3.5 px-4">Curso</th>
+                                    <th class="py-3.5 px-4">Data Nasc.</th>
+                                    <th class="py-3.5 px-4 text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Linhas serão inseridas dinamicamente via JS -->
+                            </tbody>
+                        </table>
+
+                        <!-- Estado Vazio / Nenhum registro -->
+                        <div id="emptyState" class="hidden flex-col items-center justify-center p-12 text-center">
+                            <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mb-3">
+                                <i class="fa-solid fa-user-slash text-2xl"></i>
+                            </div>
+                            <h3 class="text-base font-semibold text-slate-700">Nenhum aluno encontrado</h3>
+                            <p class="text-xs text-slate-500 mt-1 max-w-sm">
+                                Cadastre novos alunos utilizando o formulário ao lado ou limpe seus termos de busca.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Rodapé da Tabela -->
+                    <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 text-xs text-slate-500 flex justify-between items-center">
+                        <span id="showingCountText">Exibindo 0 registros</span>
+                        <span class="text-slate-400">Dados salvos localmente</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="deleteModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 max-w-md w-full p-6 text-center transform transition-all">
+            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Confirmar Exclusão</h3>
+            <p class="text-xs text-slate-500 mt-2">
+                Tem certeza que deseja remover o cadastro do aluno <strong id="deleteStudentName" class="text-slate-700"></strong>? Esta ação não pode ser desfeita.
+            </p>
+            <div class="mt-6 flex justify-center gap-3">
+                <button id="btnCancelDelete" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition">
+                    Cancelar
+                </button>
+                <button id="btnConfirmDelete" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg shadow transition">
+                    Sim, Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé da Página -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p>&copy; 2026 EduManager - Sistema de Gestão Acadêmica. Todos os direitos reservados.</p>
+            <p class="text-slate-500">Construído com HTML5, CSS3 e JavaScript Vanilla (LocalStorage)</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT VANILLA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- ESTADO DA APLICAÇÃO ---
+            let students = JSON.parse(localStorage.getItem('edu_students')) || [];
+            let deleteCandidateId = null;
+
+            // --- ELEMENTOS DO DOM ---
+            const studentForm = document.getElementById('studentForm');
+            const studentIdInput = document.getElementById('studentId');
+            const fullNameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const registrationInput = document.getElementById('registration');
+            const birthDateInput = document.getElementById('birthDate');
+            const courseInput = document.getElementById('course');
+
+            const formTitle = document.getElementById('formTitle');
+            const formIcon = document.getElementById('formIcon');
+            const btnSubmitText = document.getElementById('btnSubmitText');
+            const btnCancelEdit = document.getElementById('btnCancelEdit');
+
+            const studentsTableBody = document.getElementById('studentsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            const totalCountBadge = document.getElementById('totalCountBadge');
+            const showingCountText = document.getElementById('showingCountText');
+
+            const searchInput = document.getElementById('searchInput');
+            const btnClearSearch = document.getElementById('btnClearSearch');
+
+            const deleteModal = document.getElementById('deleteModal');
+            const deleteStudentName = document.getElementById('deleteStudentName');
+            const btnCancelDelete = document.getElementById('btnCancelDelete');
+            const btnConfirmDelete = document.getElementById('btnConfirmDelete');
+
+            const toastContainer = document.getElementById('toastContainer');
+
+            // --- ERROS DOS CAMPOS ---
+            const errors = {
+                fullName: document.getElementById('errFullName'),
+                email: document.getElementById('errEmail'),
+                registration: document.getElementById('errRegistration'),
+                birthDate: document.getElementById('errBirthDate'),
+                course: document.getElementById('errCourse')
+            };
+
+            // --- INICIALIZAÇÃO ---
+            renderTable();
+
+            // --- EVENT LISTENERS ---
+
+            // Submissão do Formulário
+            studentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (validateForm()) {
+                    saveStudent();
+                }
+            });
+
+            // Filtro em Tempo Real
+            searchInput.addEventListener('input', () => {
+                renderTable();
+            });
+
+            // Limpar Filtro
+            btnClearSearch.addEventListener('click', () => {
+                searchInput.value = '';
+                renderTable();
+            });
+
+            // Cancelar Edição
+            btnCancelEdit.addEventListener('click', resetForm);
+
+            // Modal Exclusão
+            btnCancelDelete.addEventListener('click', closeDeleteModal);
+            btnConfirmDelete.addEventListener('click', confirmDeleteStudent);
+
+            // Limpeza de erros em tempo real ao digitar
+            fullNameInput.addEventListener('input', () => clearFieldError('fullName'));
+            emailInput.addEventListener('input', () => clearFieldError('email'));
+            registrationInput.addEventListener('input', () => clearFieldError('registration'));
+            birthDateInput.addEventListener('change', () => clearFieldError('birthDate'));
+            courseInput.addEventListener('change', () => clearFieldError('course'));
+
+            // --- FUNÇÕES DE VALIDAÇÃO ---
+            function validateForm() {
+                let isValid = true;
+                const idCurrent = studentIdInput.value;
+
+                // Validação Nome
+                const nameVal = fullNameInput.value.trim();
+                if (nameVal.length < 3) {
+                    showFieldError('fullName', 'Nome deve ter no mínimo 3 caracteres.');
+                    isValid = false;
+                } else {
+                    clearFieldError('fullName');
+                }
+
+                // Validação E-mail
+                const emailVal = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailVal)) {
+                    showFieldError('email', 'Por favor, informe um e-mail válido.');
+                    isValid = false;
+                } else {
+                    clearFieldError('email');
+                }
+
+                // Validação Matrícula
+                const regVal = registrationInput.value.trim();
+                if (regVal === '') {
+                    showFieldError('registration', 'A matrícula é obrigatória.');
+                    isValid = false;
+                } else {
+                    // Verificar se já existe matrícula repetida em outro aluno
+                    const duplicateReg = students.find(s => s.registration.toLowerCase() === regVal.toLowerCase() && s.id !== idCurrent);
+                    if (duplicateReg) {
+                        showFieldError('registration', 'Esta matrícula já está cadastrada.');
+                        isValid = false;
+                    } else {
+                        clearFieldError('registration');
+                    }
+                }
+
+                // Validação Data de Nascimento
+                const birthVal = birthDateInput.value;
+                if (!birthVal) {
+                    showFieldError('birthDate', 'Informe a data de nascimento.');
+                    isValid = false;
+                } else {
+                    clearFieldError('birthDate');
+                }
+
+                // Validação Curso
+                const courseVal = courseInput.value;
+                if (!courseVal) {
+                    showFieldError('course', 'Selecione um curso.');
+                    isValid = false;
+                } else {
+                    clearFieldError('course');
+                }
+
+                return isValid;
+            }
+
+            function showFieldError(field, message) {
+                const inputElem = document.getElementById(field);
+                const errorElem = errors[field];
+                if (inputElem) inputElem.classList.add('border-red-500', 'bg-red-50');
+                if (errorElem) {
+                    errorElem.textContent = message;
+                    errorElem.classList.remove('hidden');
+                }
+            }
+
+            function clearFieldError(field) {
+                const inputElem = document.getElementById(field);
+                const errorElem = errors[field];
+                if (inputElem) inputElem.classList.remove('border-red-500', 'bg-red-50');
+                if (errorElem) errorElem.classList.add('hidden');
+            }
+
+            function clearAllErrors() {
+                Object.keys(errors).forEach(key => clearFieldError(key));
+            }
+
+            // --- OPERAÇÕES CRUD ---
+
+            function saveStudent() {
+                const id = studentIdInput.value;
+                const studentData = {
+                    id: id || Date.now().toString(),
+                    fullName: fullNameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    registration: registrationInput.value.trim(),
+                    birthDate: birthDateInput.value,
+                    course: courseInput.value
+                };
+
+                if (id) {
+                    // Atualização
+                    const index = students.findIndex(s => s.id === id);
+                    if (index !== -1) {
+                        students[index] = studentData;
+                        showToast('Dados do aluno atualizados com sucesso!', 'info');
+                    }
+                } else {
+                    // Inclusão
+                    students.unshift(studentData);
+                    showToast('Aluno cadastrado com sucesso!', 'success');
+                }
+
+                persistData();
+                resetForm();
+                renderTable();
+            }
+
+            function editStudent(id) {
+                const student = students.find(s => s.id === id);
+                if (!student) return;
+
+                // Preencher inputs
+                studentIdInput.value = student.id;
+                fullNameInput.value = student.fullName;
+                emailInput.value = student.email;
+                registrationInput.value = student.registration;
+                birthDateInput.value = student.birthDate;
+                courseInput.value = student.course;
+
+                // Alterar Interface para modo Edição
+                formTitle.querySelector('span').textContent = 'Editar Aluno';
+                formIcon.className = 'fa-solid fa-user-pen text-amber-500';
+                btnSubmitText.textContent = 'Salvar Alterações';
+                btnCancelEdit.classList.remove('hidden');
+                
+                clearAllErrors();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function openDeleteModal(id) {
+                const student = students.find(s => s.id === id);
+                if (!student) return;
+
+                deleteCandidateId = id;
+                deleteStudentName.textContent = student.fullName;
+                deleteModal.classList.remove('hidden');
+            }
+
+            function closeDeleteModal() {
+                deleteCandidateId = null;
+                deleteModal.classList.add('hidden');
+            }
+
+            function confirmDeleteStudent() {
+                if (!deleteCandidateId) return;
+
+                students = students.filter(s => s.id !== deleteCandidateId);
+                persistData();
+                renderTable();
+                closeDeleteModal();
+                showToast('Registro de aluno removido.', 'warning');
+
+                // Se o aluno deletado for o que estava sendo editado, resetar formulário
+                if (studentIdInput.value === deleteCandidateId) {
+                    resetForm();
+                }
+            }
+
+            function resetForm() {
+                studentForm.reset();
+                studentIdInput.value = '';
+                formTitle.querySelector('span').textContent = 'Cadastrar Aluno';
+                formIcon.className = 'fa-solid fa-user-plus text-indigo-600';
+                btnSubmitText.textContent = 'Cadastrar Aluno';
+                btnCancelEdit.classList.add('hidden');
+                clearAllErrors();
+            }
+
+            function persistData() {
+                localStorage.setItem('edu_students', JSON.stringify(students));
+            }
+
+            // --- RENDERIZAÇÃO DA TABELA ---
+            function renderTable() {
+                const filter = searchInput.value.toLowerCase().trim();
+                
+                const filteredStudents = students.filter(s => 
+                    s.fullName.toLowerCase().includes(filter) || 
+                    s.registration.toLowerCase().includes(filter)
+                );
+
+                studentsTableBody.innerHTML = '';
+
+                if (filteredStudents.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    emptyState.classList.add('flex');
+                } else {
+                    emptyState.classList.add('hidden');
+                    emptyState.classList.remove('flex');
+
+                    filteredStudents.forEach(student => {
+                        const tr = document.createElement('tr');
+                        tr.className = 'hover:bg-slate-50/80 transition duration-150';
+
+                        // Formatando a Data
+                        const dateParts = student.birthDate.split('-');
+                        const formattedDate = dateParts.length === 3 ? `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}` : student.birthDate;
+
+                        tr.innerHTML = `
+                            <td class="py-3.5 px-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs shadow-sm">
+                                        ${getInitials(student.fullName)}
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-slate-900">${escapeHtml(student.fullName)}</div>
+                                        <div class="text-xs text-slate-500">${escapeHtml(student.email)}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3.5 px-4 font-mono text-xs font-semibold text-slate-600">
+                                ${escapeHtml(student.registration)}
+                            </td>
+                            <td class="py-3.5 px-4">
+                                <span class="px-2.5 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full border border-slate-200">
+                                    ${escapeHtml(student.course)}
+                                </span>
+                            </td>
+                            <td class="py-3.5 px-4 text-xs text-slate-600">
+                                ${formattedDate}
+                            </td>
+                            <td class="py-3.5 px-4 text-right">
+                                <div class="flex items-center justify-end space-x-2">
+                                    <button class="btn-edit p-2 text-slate-400 hover:text-amber-600 rounded-lg hover:bg-amber-50 transition" title="Editar Aluno" data-id="${student.id}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn-delete p-2 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition" title="Excluir Aluno" data-id="${student.id}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+                        studentsTableBody.appendChild(tr);
+                    });
+
+                    // Atribuir Eventos aos Botões de Ação da Tabela
+                    document.querySelectorAll('.btn-edit').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const id = e.currentTarget.getAttribute('data-id');
+                            editStudent(id);
+                        });
+                    });
+
+                    document.querySelectorAll('.btn-delete').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const id = e.currentTarget.getAttribute('data-id');
+                            openDeleteModal(id);
+                        });
+                    });
+                }
+
+                // Atualização dos Contadores
+                totalCountBadge.textContent = students.length;
+                showingCountText.textContent = `Exibindo ${filteredStudents.length} de ${students.length} registro(s)`;
+            }
+
+            // --- UTILITÁRIOS DE UX ---
+            function getInitials(name) {
+                if (!name) return 'A';
+                const parts = name.trim().split(' ');
+                if (parts.length >= 2) {
+                    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+                }
+                return parts[0][0].toUpperCase();
+            }
+
+            function escapeHtml(str) {
+                return str.replace(/[&< me"']/g, function(m) {
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#039;'
+                    }[m];
+                });
+            }
+
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                
+                let bgClass = 'bg-slate-800 text-white';
+                let iconClass = 'fa-circle-check text-emerald-400';
+
+                if (type === 'success') {
+                    bgClass = 'bg-slate-900 text-white border-l-4 border-emerald-500';
+                    iconClass = 'fa-circle-check text-emerald-400';
+                } else if (type === 'info') {
+                    bgClass = 'bg-slate-900 text-white border-l-4 border-indigo-500';
+                    iconClass = 'fa-circle-info text-indigo-400';
+                } else if (type === 'warning') {
+                    bgClass = 'bg-slate-900 text-white border-l-4 border-amber-500';
+                    iconClass = 'fa-triangle-exclamation text-amber-400';
+                }
+
+                toast.className = `${bgClass} toast-enter px-4 py-3 rounded-lg shadow-lg text-xs font-medium flex items-center gap-3 pointer-events-auto max-w-sm`;
+                toast.innerHTML = `
+                    <i class="fa-solid ${iconClass} text-base"></i>
+                    <span class="flex-grow">${message}</span>
+                `;
+
+                toastContainer.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transition = 'opacity 0.3s ease-out';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3500);
+            }
+        });
+    </script>
+</body>
+</html>
