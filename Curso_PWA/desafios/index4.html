@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Achadinho</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🛍️ Meu Achadinho</h1>
+        <p>Organize os produtos que você deseja comprar!</p>
+    </header>
+
+    <main>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <section class="formulario">
+
+            <h2>Cadastrar produto</h2>
+
+            <form id="formProduto">
+
+                <label for="nome">Nome do produto:</label>
+                <input type="text" id="nome" placeholder="Ex: Fone Bluetooth" required>
+
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" placeholder="Ex: 99.90"
+                    min="0.01" step="0.01" required>
+
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Eletrônicos">Eletrônicos</option>
+                    <option value="Roupas">Roupas</option>
+                    <option value="Beleza">Beleza</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Outros">Outros</option>
+                </select>
+
+                <label for="descricao">Descrição ou link:</label>
+                <input type="text" id="descricao"
+                    placeholder="Onde encontrou o produto?">
+
+                <button type="submit">Adicionar produto</button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ESTATÍSTICAS -->
+        <section class="estatisticas">
+
+            <div class="card-estatistica">
+                <h3>Produtos cadastrados</h3>
+                <p id="totalProdutos">0</p>
+            </div>
+
+            <div class="card-estatistica">
+                <h3>Valor total</h3>
+                <p id="valorTotal">R$ 0,00</p>
+            </div>
+
+        </section>
+
+
+        <!-- PESQUISA E FILTRO -->
+        <section class="controles">
+
+            <input type="text" id="pesquisa"
+                placeholder="Pesquisar produto...">
+
+            <select id="filtro">
+                <option value="todos">Todos os produtos</option>
+                <option value="pendentes">Ainda não comprei</option>
+                <option value="comprados">Já comprei</option>
+            </select>
+
+        </section>
+
+
+        <!-- LISTA DE PRODUTOS -->
+        <section class="lista">
+
+            <h2>Minha lista de desejos</h2>
+
+            <div id="listaProdutos" class="produtos">
+
+                <!-- Os cards serão criados pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Meu Achadinho © 2026</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/script2.js"></script>
+
+</body>
+</html>

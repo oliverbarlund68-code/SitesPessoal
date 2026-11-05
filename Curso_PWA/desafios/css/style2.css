@@ -1,0 +1,197 @@
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f3fa;
+    color: #333;
+}
+
+
+/* CABEÇALHO */
+
+header {
+    background-color: #7856a8;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+
+/* FORMULÁRIO */
+
+.formulario {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+.formulario h2 {
+    margin-bottom: 20px;
+    color: #7856a8;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #7856a8;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+
+/* ESTATÍSTICAS */
+
+.estatisticas {
+    display: flex;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.card-estatistica {
+    background-color: white;
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+.card-estatistica h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.card-estatistica p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #7856a8;
+}
+
+
+/* PESQUISA E FILTRO */
+
+.controles {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.controles input {
+    flex: 2;
+}
+
+.controles select {
+    flex: 1;
+}
+
+
+/* LISTA DE PRODUTOS */
+
+.lista h2 {
+    margin-bottom: 20px;
+    color: #7856a8;
+}
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+
+/* CARD DE CADA PRODUTO */
+
+.produto {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #ddd;
+}
+
+.produto h3 {
+    color: #7856a8;
+    margin-bottom: 10px;
+}
+
+.produto p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.produto .comprado {
+    color: green;
+    font-weight: bold;
+}
+
+.produto .pendente {
+    color: #d18a00;
+    font-weight: bold;
+}
+
+.produto button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.produto .btn-excluir {
+    background-color: #dc4c4c;
+}
+
+.produto .btn-status {
+    background-color: #279b70;
+}
+
+.vazio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}

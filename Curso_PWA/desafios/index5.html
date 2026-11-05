@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Achadinho | Dashboard</title>
+
+    <!-- Fonte Inter e Ícones Lucide (opcional/CDN limpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style3.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- NAVEGAÇÃO LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="logo-icon">🛍️</span>
+                <h2>Cine Club</h2>
+            </div>
+
+            <nav class="nav-abas">
+                <button class="tab-btn ativa" onclick="mudarAba(event, 'aba-cadastro')">
+                    <span class="nav-icon">➕</span>
+                    <span>Novo Produto</span>
+                </button>
+
+                <button class="tab-btn" onclick="mudarAba(event, 'aba-lista')">
+                    <span class="nav-icon">📦</span>
+                    <span>Meus Achados</span>
+                </button>
+
+                <button class="tab-btn" onclick="mudarAba(event, 'aba-estatisticas')">
+                    <span class="nav-icon">📊</span>
+                    <span>Painel & Métricas</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Meu Achadinho © 2026</p>
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL (PAINEL DE CONTROLE) -->
+        <main class="main-content">
+
+            <!-- ABA 1: FORMULÁRIO DE CADASTRO -->
+            <section id="aba-cadastro" class="tab-content ativa">
+                <header class="section-header">
+                    <h1>Cadastrar Novo Produto</h1>
+                    <p>Adicione itens à sua lista de desejos para acompanhar os preços e compras.</p>
+                </header>
+
+                <div class="card-glass formulario">
+                    <form id="formProduto">
+                        <div class="input-group">
+                            <label for="nome">Nome do produto</label>
+                            <input type="text" id="nome" placeholder="Ex: Monitor Gamer 27''" required>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="preco">Preço estimado (R$)</label>
+                                <input type="number" id="preco" placeholder="Ex: 1299.90" min="0.01" step="0.01" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="categoria">Categoria</label>
+                                <select id="categoria" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="Eletrônicos">Eletrônicos</option>
+                                    <option value="Roupas">Roupas</option>
+                                    <option value="Beleza">Beleza</option>
+                                    <option value="Casa">Casa</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="descricao">Link ou observação</label>
+                            <input type="text" id="descricao" placeholder="https://loja.com/produto ou notas...">
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <span>Adicionar ao Achadinho</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+
+            <!-- ABA 2: LISTA DE PRODUTOS E FILTROS -->
+            <section id="aba-lista" class="tab-content">
+                <header class="section-header">
+                    <h1>Meus Achados</h1>
+                    <p>Gerencie seus itens salvos, altere status de compra e filtre por preferência.</p>
+                </header>
+
+                <div class="card-glass controles-bar">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="pesquisa" placeholder="Buscar por nome do produto...">
+                    </div>
+
+                    <div class="filter-box">
+                        <select id="filtro">
+                            <option value="todos">Todos os produtos</option>
+                            <option value="pendentes">⏳ Desejos pendentes</option>
+                            <option value="comprados">✅ Já comprados</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="lista">
+                    <div id="listaProdutos" class="produtos-grid">
+                        <!-- Os cards serão injetados dinamicamente via JS -->
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ABA 3: PAINEL DE ESTATÍSTICAS -->
+            <section id="aba-estatisticas" class="tab-content">
+                <header class="section-header">
+                    <h1>Métricas & Resumo</h1>
+                    <p>Visão geral do valor acumulado e quantidade total dos seus achados.</p>
+                </header>
+
+                <div class="estatisticas-grid">
+                    <div class="card-glass card-kpi">
+                        <div class="kpi-icon">📦</div>
+                        <div class="kpi-info">
+                            <h3>Total de Itens</h3>
+                            <p id="totalProdutos">0</p>
+                        </div>
+                    </div>
+
+                    <div class="card-glass card-kpi highlight">
+                        <div class="kpi-icon">💎</div>
+                        <div class="kpi-info">
+                            <h3>Valor Total Estimado</h3>
+                            <p id="valorTotal">R$ 0,00</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script3.js"></script>
+
+</body>
+</html>
