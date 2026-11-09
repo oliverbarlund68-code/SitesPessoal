@@ -1,0 +1,21 @@
+{
+  "name": "meu Cine",
+  "short_name": "MeuCine",
+  "description": "Organize seus filmes e series favoritos!",
+  "start_url": "./index5.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "img/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Achadinho | Dashboard</title>
-
+    <title>Cine Club Oficial</title>
+    <link rel="manifest" href="manifestTeste.json">
     <!-- Fonte Inter e Ícones Lucide (opcional/CDN limpo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
 
                 <button class="tab-btn" onclick="mudarAba(event, 'aba-lista')">
                     <span class="nav-icon">📦</span>
-                    <span>Meus Achados</span>
+                    <span>Filmes Da Loja</span>
                 </button>
 
                 <button class="tab-btn" onclick="mudarAba(event, 'aba-estatisticas')">
@@ -44,7 +44,7 @@
             </nav>
 
             <div class="sidebar-footer">
-                <p>Meu Achadinho © 2026</p>
+                <p>Cine Club © 2026</p>
             </div>
         </aside>
 
@@ -62,23 +62,23 @@
                     <form id="formProduto">
                         <div class="input-group">
                             <label for="nome">Nome do produto</label>
-                            <input type="text" id="nome" placeholder="Ex: Monitor Gamer 27''" required>
+                            <input type="text" id="nome" placeholder="Ex: The Bad Guys" required>
                         </div>
 
                         <div class="input-row">
                             <div class="input-group">
                                 <label for="preco">Preço estimado (R$)</label>
-                                <input type="number" id="preco" placeholder="Ex: 1299.90" min="0.01" step="0.01" required>
+                                <input type="number" id="preco" placeholder="Ex: 30R$" min="0.01" step="0.01" required>
                             </div>
 
                             <div class="input-group">
                                 <label for="categoria">Categoria</label>
                                 <select id="categoria" required>
                                     <option value="">Selecione uma categoria</option>
-                                    <option value="Eletrônicos">Eletrônicos</option>
-                                    <option value="Roupas">Roupas</option>
-                                    <option value="Beleza">Beleza</option>
-                                    <option value="Casa">Casa</option>
+                                    <option value="Eletrônicos">Ação</option>
+                                    <option value="Roupas">Comedia</option>
+                                    <option value="Beleza">Romance</option>
+                                    <option value="Casa">Drama</option>
                                     <option value="Outros">Outros</option>
                                 </select>
                             </div>
@@ -100,7 +100,7 @@
             <!-- ABA 2: LISTA DE PRODUTOS E FILTROS -->
             <section id="aba-lista" class="tab-content">
                 <header class="section-header">
-                    <h1>Meus Achados</h1>
+                    <h1>Filmes Á Venda</h1>
                     <p>Gerencie seus itens salvos, altere status de compra e filtre por preferência.</p>
                 </header>
 
@@ -158,7 +158,7 @@
     </div>
 
     <!-- JavaScript -->
-    <script src="js/script3.js"></script>
-
+    <script src="script3.js" defer></script>
+    <script src="sw.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+{
+    "estudantes": [
+        {
+            "id": "1",
+            "fullName": "Ana Maria Silva",
+            "email": "ana@universidade.edu.br",
+            "registration": "20261001",
+            "course": "Ciência da Computação",
+            "birthDate": "2002-05-14"
+        },
+        {
+            "id": "2",
+            "fullName": "Carlos Souza",
+            "email": "carlos@universidade.edu.br",
+            "registration": "20261002",
+            "course": "Engenharia de Software",
+            "birthDate": "2001-11-20"
+        }
+    ]
+}
