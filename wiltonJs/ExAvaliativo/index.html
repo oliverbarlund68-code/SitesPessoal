@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação com Expressões Regulares e jMaskWiFi - IFTM</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Formulário de Validação com Expressões Regulares (IFTM)</h1>
+
+    <form onsubmit="return false;">
+
+        <!-- a) Data de nascimento -->
+        <div class="campo-grupo">
+            <label for="txtDataNasc">a) Data de nascimento:</label>
+            <small>Formatos permitidos: dd/mm/aaaa ou dd/mm/aa</small>
+            <div class="input-linha">
+                <input type="text" id="txtDataNasc" value="15/08/1998">
+                <button type="button" onclick="validarCampo('txtDataNasc', 'msgDataNasc', /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4}|\d{2})$/)">Validar</button>
+                <span id="msgDataNasc" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- b) CPF (jMaskWiFi) -->
+        <div class="campo-grupo">
+            <label for="txtCPF">b) CPF (jMaskWiFi):</label>
+            <small>Formato permitido: xxx.xxx.xxx-xx</small>
+            <div class="input-linha">
+                <input type="text" id="txtCPF" value="123.456.789-00" onkeypress="inserirMascara('txtCPF', 'xxx.xxx.xxx-xx')">
+                <button type="button" onclick="validarCampo('txtCPF', 'msgCPF', /^\d{3}\.\d{3}\.\d{3}-\d{2}$/)">Validar</button>
+                <span id="msgCPF" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- c) Número de matrícula de um aluno -->
+        <div class="campo-grupo">
+            <label for="txtMatricula">c) Número de matrícula de um aluno:</label>
+            <small>Formatos permitidos: IFTM-xxx/xxx-yy ou iftm-xxx/xxx-yy (x = dígito, y = alfanumérico)</small>
+            <div class="input-linha">
+                <input type="text" id="txtMatricula" value="IFTM-123/456-A9">
+                <button type="button" onclick="validarCampo('txtMatricula', 'msgMatricula', /^(IFTM|iftm)-\d{3}\/\d{3}-[a-zA-Z0-9]{2}$/)">Validar</button>
+                <span id="msgMatricula" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- d) Código de uma disciplina do IFTM (jMaskWiFi) -->
+        <div class="campo-grupo">
+            <label for="txtDisc1">d) Código de uma disciplina do IFTM (jMaskWiFi):</label>
+            <small>Formato permitido: MT-xx.xxx-IFTM (letras maiúsculas ou minúsculas)</small>
+            <div class="input-linha">
+                <input type="text" id="txtDisc1" value="MT-12.345-IFTM" onkeypress="inserirMascara('txtDisc1', 'MT-xx.xxx-IFTM')">
+                <button type="button" onclick="validarCampo('txtDisc1', 'msgDisc1', /^[mM][tT]-\d{2}\.\d{3}-[iI][fF][tT][mM]$/)">Validar</button>
+                <span id="msgDisc1" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- e) Código de uma disciplina do IFTM (versão 2) (jMaskWiFi) -->
+        <div class="campo-grupo">
+            <label for="txtDisc2">e) Código de uma disciplina do IFTM (versão 2) (jMaskWiFi):</label>
+            <small>Formato permitido: MT-xx.xxx-IFTM (MT obrigatoriamente maiúsculo; IFTM maiúsculo ou minúsculo)</small>
+            <div class="input-linha">
+                <input type="text" id="txtDisc2" value="MT-98.765-iftm" onkeypress="inserirMascara('txtDisc2', 'MT-xx.xxx-IFTM')">
+                <button type="button" onclick="validarCampo('txtDisc2', 'msgDisc2', /^MT-\d{2}\.\d{3}-[iI][fF][tT][mM]$/)">Validar</button>
+                <span id="msgDisc2" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- f) Código de uma disciplina do IFTM (versão 3) -->
+        <div class="campo-grupo">
+            <label for="txtDisc3">f) Código de uma disciplina do IFTM (versão 3):</label>
+            <small>Formato permitido: MT-xx.xxx-IFTM (letras maiúsculas/minúsculas e no máximo 1 espaço entre as letras)</small>
+            <div class="input-linha">
+                <input type="text" id="txtDisc3" value="M T-10.200-I F T M">
+                <button type="button" onclick="validarCampo('txtDisc3', 'msgDisc3', /^[mM] ?[tT]-\d{2}\.\d{3}-[iI] ?[fF] ?[tT] ?[mM]$/)">Validar</button>
+                <span id="msgDisc3" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- g) Nome de campus do IFTM -->
+        <div class="campo-grupo">
+            <label for="txtCampus">g) Nome de campus do IFTM:</label>
+            <small>Únicos formatos permitidos: IFTM campus Uberlândia ou IFTM campus Uberlândia Centro</small>
+            <div class="input-linha">
+                <input type="text" id="txtCampus" value="IFTM campus Uberlândia Centro">
+                <button type="button" onclick="validarCampo('txtCampus', 'msgCampus', /^IFTM campus Uberlândia( Centro)?$/)">Validar</button>
+                <span id="msgCampus" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- h) Telefone (jMaskWiFi) -->
+        <div class="campo-grupo">
+            <label for="txtTel1">h) Telefone (jMaskWiFi):</label>
+            <small>Formato permitido: +yy(xx)xxxxx-xxxx</small>
+            <div class="input-linha">
+                <input type="text" id="txtTel1" value="+55(34)99123-4567" onkeypress="inserirMascara('txtTel1', '+yy(xx)xxxxx-xxxx')">
+                <button type="button" onclick="validarCampo('txtTel1', 'msgTel1', /^\+\d{2}\(\d{2}\)\d{5}-\d{4}$/)">Validar</button>
+                <span id="msgTel1" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- i) Telefone (versão 2) -->
+        <div class="campo-grupo">
+            <label for="txtTel2">i) Telefone (versão 2):</label>
+            <small>Formato permitido: (xx)zyyyyy-wwww (x = 2 a 3 dígitos, z = espaço opcional, y = 4 a 5 dígitos, w = 4 dígitos)</small>
+            <div class="input-linha">
+                <input type="text" id="txtTel2" value="(034) 3233-8800">
+                <button type="button" onclick="validarCampo('txtTel2', 'msgTel2', /^\(\d{2,3}\) ?\d{4,5}-\d{4}$/)">Validar</button>
+                <span id="msgTel2" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- j) Altura de uma pessoa -->
+        <div class="campo-grupo">
+            <label for="txtAltura">j) Altura de uma pessoa:</label>
+            <small>Formato permitido: x,xz ou x.xz no intervalo fechado [1.3, 2.5] (z é opcional)</small>
+            <div class="input-linha">
+                <input type="text" id="txtAltura" value="1,75">
+                <button type="button" onclick="validarCampo('txtAltura', 'msgAltura', /^(1[.,]([3-9]\d?)|2[.,]([0-4]\d?|50?))$/)">Validar</button>
+                <span id="msgAltura" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- k) Faturamento anual de uma empresa -->
+        <div class="campo-grupo">
+            <label for="txtFaturamento">k) Faturamento anual de uma empresa:</label>
+            <small>Intervalo permitido: R$0,00 até R$999.999.999.999,99 (1 ou 2 casas decimais)</small>
+            <div class="input-linha">
+                <input type="text" id="txtFaturamento" value="R$10.524.478.967,70">
+                <button type="button" onclick="validarCampo('txtFaturamento', 'msgFaturamento', /^R\$(0|[1-9]\d{0,2}(\.\d{3}){0,3}),\d{1,2}$/)">Validar</button>
+                <span id="msgFaturamento" class="status-msg"></span>
+            </div>
+        </div>
+
+        <!-- l) Cronômetro (jMaskWiFi) -->
+        <div class="campo-grupo">
+            <label for="txtCronometro">l) Cronômetro (jMaskWiFi):</label>
+            <small>Formato permitido: HH:MM:SS:CC (00-23 : 00-59 : 00-59 : 00-99)</small>
+            <div class="input-linha">
+                <input type="text" id="txtCronometro" value="14:35:09:88" onkeypress="inserirMascara('txtCronometro', 'HH:MM:SS:CC')">
+                <button type="button" onclick="validarCampo('txtCronometro', 'msgCronometro', /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d:\d{2}$/)">Validar</button>
+                <span id="msgCronometro" class="status-msg"></span>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="js/script.js" defer></script>
+</body>
+</html>
